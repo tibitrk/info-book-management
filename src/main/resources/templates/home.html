@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>book management</title>
+</head>
+<body>
+<div id="success" th:if="${success}" >
+    <p th:text="${success}"></p>
+</div>
+<div id="resultMessage" th:if="${resultMessage}" >
+    <p th:text="${resultMessage}"></p>
+</div>
+<table>
+  <tr>
+      <th>Id</th>
+      <th>Book Name</th>
+      <th>Author Name</th>
+      <th>Actions</th>
+  </tr>
+    <tr th:each="b :${users}">
+        <td th:text="${b.id}"></td>
+        <td th:text="${b.name}"></td>
+        <td th:text="${b.author}"></td>
+        <td>
+<form th:action="@{/book-buy/{id}(id=${b.id})}" th:method ="post">
+    <button type="submit">Buy</button>
+</form>
+        </td>
+    </tr>
+</table> <br><br>
+<form th:action="@{/save}" th:method="post">
+    name: <input type = "text" name="name">
+    author: <input type = "text" name="author"><br>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
