@@ -15,17 +15,17 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Cacheable(value = "books")
+//    @Cacheable(value = "books")
     public List<User> getAllBooks(){
         System.out.println("fetching data from database");
         return userRepository.findAll();
     }
-    @CacheEvict(value = "books",allEntries = true)
+//    @CacheEvict(value = "books",allEntries = true)
     public User saveBooks(User user){
 
         return userRepository.save(user);
     }
-    @Cacheable(value = "book_status", key="#id")
+//    @Cacheable(value = "book_status", key="#id")
     public String findBookStatusById(Long id) {
         User user = userRepository.findById(id).get();
         return user.getStatus();
